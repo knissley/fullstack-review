@@ -17,18 +17,47 @@ let getReposByUsername = (username, callback) => {
   };
 
   axios(options).then((res) => {
-    const repoList = res.data;
-    repoList.forEach( (repo) => {
-      const details = [];
+    const repos = [];
+    res.data.forEach( (repo) => {
       const score = (repo.stargazers_count + (.5 * (repo.watchers_count + repo.forks_count)));
-      details.push(repo.id, repo.name, repo.html_url, repo.description, repo.forks_count, repo.stargazers_count, repo.watchers_count, repo.owner.login, score);
-      save(details);
-    })
-    callback(null);
-  }).catch((err) => {
-    callback(err);
-  })
+      const repoItem = {
+        _id: repo.id,
+        name: repo.name,
+        url: repo.html_url,
+        description: repo.description,
+        forks: repo.forks_count,
+        stars: repo.stargazers_count,
+        watchers: repo.watchers_count,
+        ownerName: repo.owner.login,
+        score: score
+      };
+      repos.push(repoItem);
+    });
 
+    save(repos, (err) => {
+      if (err) {
+        callback(err);
+      } else {
+        callback(null);
+      }
+    });
+  }).catch( () => {
+    console.log('user not found in github');
+  })
 }
 
 module.exports.getReposByUsername = getReposByUsername;
+
+
+
+  //   const repoList = res.data;
+  //   repoList.forEach( (repo) => {
+  //     const details = [];
+  //     const score = (repo.stargazers_count + (.5 * (repo.watchers_count + repo.forks_count)));
+  //     details.push(repo.id, repo.name, repo.html_url, repo.description, repo.forks_count, repo.stargazers_count, repo.watchers_count, repo.owner.login, score);
+  //     save(details);
+  //   })
+  //   callback(null);
+  // }).catch((err) => {
+  //   callback(err);
+  // })
