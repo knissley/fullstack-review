@@ -1,0 +1,36 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f3f3f3;
+}
+
+.repo-entry {
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  margin: .5em;
+  background-color: #f9f9f9;
+  gap: 2em;
+}
+
+.repo-rank {
+  font-weight: bold;
+  margin-right: 1em;
+}
+
+.repo-owner-name {
+  justify-content: flex-end;
+}
+
+.table-header {
+  display: flex;
+  gap: 2em;
+}
+
+.table-header span:not(:last-child) {
+  margin-right: 1em;
+}

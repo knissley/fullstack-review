@@ -46,14 +46,9 @@ let save = (details) => {
   })
 }
 
+
+//ask how to use error first here, err wasn't a given value in the cb here
 let retrieve = (callback) => {
-  // Repo.find({}, (err, allRepos) => {
-  //   if(err) {
-  //     callback(err);
-  //   } else {
-  //     callback(null, allRepos);
-  //   }
-  // })
   Repo.find({}).sort({score: -1}).limit(25).then((results) => {
     callback(results);
   })
