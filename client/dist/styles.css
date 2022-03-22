@@ -31,6 +31,10 @@ body {
   gap: 2em;
 }
 
+.table-header span {
+  font-weight: bold;
+}
+
 .table-header span:not(:last-child) {
   margin-right: 1em;
 }

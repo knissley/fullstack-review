@@ -26,12 +26,7 @@ app.get('/repos', function (req, res, next) {
   // TODO - your code here!
   // This route should send back the top 25 repos
   retrieve( (results) => {
-    if(results) {
-      res.send(results);
-      console.log(results.length);
-    } else {
-      res.sendStatus(404);
-    }
+    res.send(results);
   })
 });
 

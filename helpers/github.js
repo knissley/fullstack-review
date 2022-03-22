@@ -24,6 +24,9 @@ let getReposByUsername = (username, callback) => {
       details.push(repo.id, repo.name, repo.html_url, repo.description, repo.forks_count, repo.stargazers_count, repo.watchers_count, repo.owner.login, score);
       save(details);
     })
+    callback(null);
+  }).catch((err) => {
+    callback(err);
   })
 
 }

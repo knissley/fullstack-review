@@ -22,14 +22,6 @@ class App extends React.Component {
     })
   }
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (this.state.repos !== prevState.repos) {
-  //     this.setState({
-  //       repos: this.state.repos
-  //     })
-  //   }
-  // }
-
   search (term) {
     console.log(`${term} was searched`);
     // TODO

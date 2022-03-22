@@ -5,7 +5,7 @@ mongoose.connect('mongodb://localhost/fetcher', {
 });
 
 let repoSchema = mongoose.Schema({
-  repoId: {type: Number, unique: true, required: true, dropDups: true},
+  repoId: Number,
   name: String,
   url: String,
   description: String,
@@ -19,10 +19,6 @@ let repoSchema = mongoose.Schema({
 let Repo = mongoose.model('Repo', repoSchema);
 
 let save = (details) => {
-  // TODO: Your code here
-  // This function should save a repo or repos to
-  // the MongoDB
-
   Repo.findOne({repoId: details[0]}, (err, repo) => {
     if (err) {
       console.log(err);
@@ -46,11 +42,13 @@ let save = (details) => {
   })
 }
 
-
-//ask how to use error first here, err wasn't a given value in the cb here
+//ask how to use error first here, err wasn't a given value in the cb
 let retrieve = (callback) => {
-  Repo.find({}).sort({score: -1}).limit(25).then((results) => {
-    callback(results);
+  Repo.find({})
+  .sort({score: -1})
+  .limit(25)
+  .then((repos) => {
+    callback(repos);
   })
 }
 

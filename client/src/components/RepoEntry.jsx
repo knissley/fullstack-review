@@ -2,6 +2,10 @@ import React from 'react';
 
 const RepoEntry = ({repo, rank}) => {
 
+  if (rank < 10) {
+    rank = '0' + rank;
+  }
+
   return (
     <div className="repo-entry">
       <div className="repo-rank">{rank}</div>
